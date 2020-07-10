@@ -44,7 +44,6 @@ module Vebra
         uri = URI.parse(url)
         http = Net::HTTP.new(uri.host, uri.port)
         request = Net::HTTP::Get.new(uri.request_uri)
-        request = Net::HTTP::Get.new(uri.request_uri)
 
         # add authorization header (either user/pass or token based)
         if auth[:token]
@@ -58,8 +57,9 @@ module Vebra
         # make the request
         response = http.request(request)
 
-        puts response
         puts url
+        puts request
+        puts response
 
         # monitor for 401, signalling that our token has expired
         if response.code.to_i == 401
