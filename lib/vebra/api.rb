@@ -58,6 +58,9 @@ module Vebra
         # make the request
         response = http.request(request)
 
+        puts response
+        puts url
+
         # monitor for 401, signalling that our token has expired
         if response.code.to_i == 401
           puts "[Vebra]: encountered 401 Unauthorized (attempt ##{retries + 1})" if Vebra.debugging?
