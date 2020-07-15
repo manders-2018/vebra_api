@@ -70,13 +70,13 @@ module Vebra
           unless child_node.name == "text" && child_result.nil?
             attr_key = (mappings[child_node.name] || child_node.name).downcase.to_sym
             attr_key = :value if attr_key == :text
-            
+
             if !node_hash[attr_key]
               # if this attribute hasn't yet been set, set it's value
               if child_result && collections.include?(attr_key)
                 # if this key is known to hold a collection, force it
                 first_value = child_result.values.first
-                node_hash[attr_key] = first_value.respond_to?(:<<) ? first_value : [ first_value ]
+                node_hash[attr_key] = first_value.respond_to?(:<<) ? first_value : [first_value]
               else
                 # set the value
                 node_hash[attr_key] = child_result
@@ -88,7 +88,7 @@ module Vebra
                 node_hash[attr_key] << child_result
               else
                 # otherwise, build a new collection
-                node_hash[attr_key] = [ node_hash[attr_key], child_result ]
+                node_hash[attr_key] = [node_hash[attr_key], child_result]
               end
             end
           end
@@ -110,7 +110,7 @@ module Vebra
           value.to_i
         elsif value.to_f.to_s == value
           value.to_f
-        elsif value.gsub(/^\s+|\s+$/, '') == '' || value == '(Not Specified)'
+        elsif value&.gsub(/^\s+|\s+$/, "") == "" || value == "(Not Specified)"
           nil
         elsif /^\d{2}\/\d{2}\/\d{4}$/ =~ value
           Date.parse(value)
@@ -128,25 +128,25 @@ module Vebra
 
     def mappings
       {
-        'propertyid'  => 'property_id',
-        'prop_id'     => 'vebra_ref',
-        'propid'      => 'vebra_ref',
-        'firmid'      => 'firm_id',
-        'branchid'    => 'branch_id',
-        'lastchanged' => 'last_changed',
-        'solddate'    => 'sold_on',
-        'leaseend'    => 'lease_ends_on',
-        'soldprice'   => 'sold_price',
-        'groundrent'  => 'ground_rent',
-        'userfield1'  => 'user_field_1', 
-        'userfield2'  => 'user_field_2' ,
-        'updated'     => 'updated_at',
-        'FirmID'      => 'firm_id',
-        'BranchID'    => 'branch_id',
-        'web_status'  => 'status',
-        'available'   => 'available_on',
-        'uploaded'    => 'uploaded_on',
-        'price'       => 'price_attributes'
+        "propertyid" => "property_id",
+        "prop_id" => "vebra_ref",
+        "propid" => "vebra_ref",
+        "firmid" => "firm_id",
+        "branchid" => "branch_id",
+        "lastchanged" => "last_changed",
+        "solddate" => "sold_on",
+        "leaseend" => "lease_ends_on",
+        "soldprice" => "sold_price",
+        "groundrent" => "ground_rent",
+        "userfield1" => "user_field_1",
+        "userfield2" => "user_field_2",
+        "updated" => "updated_at",
+        "FirmID" => "firm_id",
+        "BranchID" => "branch_id",
+        "web_status" => "status",
+        "available" => "available_on",
+        "uploaded" => "uploaded_on",
+        "price" => "price_attributes",
       }
     end
 
@@ -164,59 +164,59 @@ module Vebra
     # their corresponding lookup (see below)
     def lookups
       {
-        'web_status' => 'property_status',
-        'furnished'  => 'furnished_status'
+        "web_status" => "property_status",
+        "furnished" => "furnished_status",
       }
     end
 
     # Map the web_status code
     def property_status_lookup(code)
       case code.to_i
-        when 0   then [ 'For Sale', 'To Let' ]
-        when 1   then [ 'Under Offer', 'Let' ]
-        when 2   then [ 'Sold', 'Under Offer' ]
-        when 3   then [ 'SSTC', 'Reserved' ]
-        when 4   then [ 'For Sale By Auction', 'Let Agreed' ]
-        when 5   then [ 'Reserved' ]
-        when 6   then [ 'New Instruction' ]
-        when 7   then [ 'Just on Market' ]
-        when 8   then [ 'Price Reduction' ]
-        when 9   then [ 'Keen to Sell' ]
-        when 10  then [ 'No Chain' ]
-        when 11  then [ 'Vendor will pay stamp duty' ]
-        when 12  then [ 'Offers in the region of' ]
-        when 13  then [ 'Guide Price' ]
-        when 200 then [ 'For Sale', 'To Let' ]
-        when 201 then [ 'Under Offer', 'Let' ]
-        when 202 then [ 'Sold', 'Under Offer' ]
-        when 203 then [ 'SSTC', 'Reserved' ]
-        when 214 then [ 'Under Offer', 'Let' ]
-        when 255 then []
-        else nil
+      when 0 then ["For Sale", "To Let"]
+      when 1 then ["Under Offer", "Let"]
+      when 2 then ["Sold", "Under Offer"]
+      when 3 then ["SSTC", "Reserved"]
+      when 4 then ["For Sale By Auction", "Let Agreed"]
+      when 5 then ["Reserved"]
+      when 6 then ["New Instruction"]
+      when 7 then ["Just on Market"]
+      when 8 then ["Price Reduction"]
+      when 9 then ["Keen to Sell"]
+      when 10 then ["No Chain"]
+      when 11 then ["Vendor will pay stamp duty"]
+      when 12 then ["Offers in the region of"]
+      when 13 then ["Guide Price"]
+      when 200 then ["For Sale", "To Let"]
+      when 201 then ["Under Offer", "Let"]
+      when 202 then ["Sold", "Under Offer"]
+      when 203 then ["SSTC", "Reserved"]
+      when 214 then ["Under Offer", "Let"]
+      when 255 then []
+      else nil
       end
     end
 
     # Map the furnished code
     def furnished_status_lookup(code)
       case code.to_i
-        when 0 then 'Furnished'
-        when 1 then 'Part Furnished'
-        when 2 then 'Un-Furnished'
-        when 3 then 'Not Specified'
-        when 4 then 'Furnished / Un-Furnished'
-        else nil
+      when 0 then "Furnished"
+      when 1 then "Part Furnished"
+      when 2 then "Un-Furnished"
+      when 3 then "Not Specified"
+      when 4 then "Furnished / Un-Furnished"
+      else nil
       end
     end
 
     # Map the let_type code
     def let_type_lookup(code)
       case code.to_i
-        when 0 then 'Not Specified'
-        when 1 then 'Long Term'
-        when 2 then 'Short Term'
-        when 3 then 'Student'
-        when 4 then 'Commercial'
-        else nil
+      when 0 then "Not Specified"
+      when 1 then "Long Term"
+      when 2 then "Short Term"
+      when 3 then "Student"
+      when 4 then "Commercial"
+      else nil
       end
     end
 
@@ -269,16 +269,16 @@ module Vebra
       # now: { :type_a => [ #<paragraph> ], :type_b => [ #<paragraph> ] }
       if paragraphs = hash.delete(:paragraphs)
         # extract each paragraph type into separate collections
-        hash[:rooms]          = paragraphs.select { |p| p[:type] == 0; }
-        hash[:energy_reports] = paragraphs.select { |p| p[:type] == 1; }
-        hash[:disclaimers]    = paragraphs.select { |p| p[:type] == 2; }
+        hash[:rooms] = paragraphs.select { |p| p[:type] == 0 }
+        hash[:energy_reports] = paragraphs.select { |p| p[:type] == 1 }
+        hash[:disclaimers] = paragraphs.select { |p| p[:type] == 2 }
 
         %w( rooms energy_reports disclaimers ).map(&:to_sym).each do |paragraph_type|
           hash[paragraph_type].each { |p| p[:vebra_ref] = p.delete(:id); p.delete(:type) }
         end
 
         hash[:rooms].each do |room|
-          room[:room_type] = room[:name].gsub(/\s?[\d+]$/, '').downcase.gsub(/\s/, '_')
+          room[:room_type] = room[:name]&.gsub(/\s?[\d+]$/, "").downcase&.gsub(/\s/, "_")
         end
       end
 
@@ -287,16 +287,16 @@ module Vebra
       if files = hash.delete(:files)
         # extract each file type into separate collections
         hash[:files] = {
-          :images              => files.select { |f| f[:type] == 0 },
-          :maps                => files.select { |f| f[:type] == 1 },
-          :floorplans          => files.select { |f| f[:type] == 2 },
-          :tours               => files.select { |f| f[:type] == 3 },
-          :ehouses             => files.select { |f| f[:type] == 4 },
-          :ipixes              => files.select { |f| f[:type] == 5 },
-          :pdfs                => files.select { |f| f[:type] == 7 },
-          :urls                => files.select { |f| f[:type] == 8 },
+          :images => files.select { |f| f[:type] == 0 },
+          :maps => files.select { |f| f[:type] == 1 },
+          :floorplans => files.select { |f| f[:type] == 2 },
+          :tours => files.select { |f| f[:type] == 3 },
+          :ehouses => files.select { |f| f[:type] == 4 },
+          :ipixes => files.select { |f| f[:type] == 5 },
+          :pdfs => files.select { |f| f[:type] == 7 },
+          :urls => files.select { |f| f[:type] == 8 },
           :energy_certificates => files.select { |f| f[:type] == 9 },
-          :info_packs          => files.select { |f| f[:type] == 10 }
+          :info_packs => files.select { |f| f[:type] == 10 },
         }
 
         %w( images maps floorplans tours ehouses ipixes pdfs urls energy_certificates info_packs ).map(&:to_sym).each do |file_type|
@@ -314,10 +314,10 @@ module Vebra
       # now: { :address => { :street => #<street>, :town => #<town>, ... } }
       if !hash[:address] && hash[:street] && hash[:town] && hash[:county] && hash[:postcode]
         hash[:address] = {
-        :street   => hash.delete(:street),
-        :town     => hash.delete(:town),
-        :county   => hash.delete(:county),
-        :postcode => hash.delete(:postcode)
+          :street => hash.delete(:street),
+          :town => hash.delete(:town),
+          :county => hash.delete(:county),
+          :postcode => hash.delete(:postcode),
         }
       end
 
@@ -327,7 +327,7 @@ module Vebra
         hash[:group] = case type_index(hash)
           when 0 then :sales
           when 1 then :lettings
-        end
+          end
 
         if hash[:status]
           hash[:status] = hash[:status][type_index(hash)]
@@ -336,7 +336,7 @@ module Vebra
 
       # was: { :garden/parking => nil } or: { :garden/parking => 0 }
       # now: { :garden/parking => false }
-      [ :parking, :garden ].each do |key|
+      [:parking, :garden].each do |key|
         if hash.keys.include?(key)
           hash[key] = !hash[key].nil? && hash[key].to_i != 0
         end
@@ -344,18 +344,17 @@ module Vebra
 
       hash
     end
-    
+
     def type_index(hash)
       if hash[:attributes] && hash[:attributes][:database]
         case hash[:attributes][:database]
-          when 1, 5 then 0 #sale
-          when 2, 118 then 1 #let
-          else 0
+        when 1, 5 then 0 #sale
+        when 2, 118 then 1 #let
+        else 0
         end
       else
         nil
       end
     end
-
   end
 end

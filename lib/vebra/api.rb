@@ -26,7 +26,7 @@ module Vebra
       # Compiles a url string, interpolating the dynamic components
       def compile(url_string, config, interpolations = {})
         interpolations = config.merge(interpolations)
-        url_string.gsub(/\{(\w+)\}/) do
+        url_string&.gsub(/\{(\w+)\}/) do
           interpolations[($1).to_sym]
         end
       end
@@ -56,10 +56,6 @@ module Vebra
 
         # make the request
         response = http.request(request)
-
-        puts url
-        puts request
-        puts response
 
         # monitor for 401, signalling that our token has expired
         if response.code.to_i == 401
