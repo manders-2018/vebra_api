@@ -278,7 +278,9 @@ module Vebra
         end
 
         hash[:rooms].each do |room|
-          room[:room_type] = room[:name]&.gsub(/\s?[\d+]$/, "").downcase&.gsub(/\s/, "_")
+          if room[:name]&.present?
+            room[:room_type] = room[:name]&.gsub(/\s?[\d+]$/, "")&.downcase&.gsub(/\s/, "_")
+          end
         end
       end
 
