@@ -252,12 +252,12 @@ module Vebra
 
       # was: { :area => [ #<area - imperial>, #<area - metric> ] }
       # now: { :area => { :imperial => #<imperial>, :metric => #<metric> } }
-      if area = hash[:area]
-        hash[:area] = {}
-        area.each do |a|
-          hash[:area][a.delete(:measure).to_sym] = a
-        end
-      end
+      # if area = hash[:area]
+      #   hash[:area] = {}
+      #   area.each do |a|
+      #     hash[:area][a.delete(:measure).to_sym] = a
+      #   end
+      # end
 
       # was: { :bullets => [ { :value => #<value> }, { :value => #<value> } ] }
       # now: { :bullets => [ #<value>, #<value> ] }
