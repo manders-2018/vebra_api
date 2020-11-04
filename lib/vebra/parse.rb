@@ -47,8 +47,7 @@ module Vebra
             $node_hash = node_hash
           end
 
-          puts node_hash[:attributes].inspect
-          puts
+         
 
 
 
@@ -372,7 +371,7 @@ module Vebra
       # now: { :garden/parking => false }
       [:parking, :garden].each do |key|
         if hash.keys.include?(key)
-          puts hash[key].inspect
+          #TODO
           #hash[key] = !hash[key].nil? && hash[key].to_i != 0
         end
       end

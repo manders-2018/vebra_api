@@ -12,7 +12,7 @@ module Vebra
         else
           branch.get_properties
         end
-        puts properties.inspect
+        puts properties[:propety_id]
         puts
         properties.each { |p| p.get_property unless p.attributes[:action] == 'deleted' }
         return properties
