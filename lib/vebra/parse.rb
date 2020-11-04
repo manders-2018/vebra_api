@@ -9,6 +9,8 @@ module Vebra
       customise(parse_node(nokogiri_xml))
     end
 
+
+
     private
 
     # Nokogiri XML object => Ruby hash
@@ -33,6 +35,7 @@ module Vebra
 
         # if the node has attributes, extract them
         unless node.attributes.empty?
+          $node_hash = node_hash
           attributes = node.attributes
           node_hash[:attributes] = attributes.inject({}) do |result, (key, value)|
             attribute = attributes[key]
@@ -175,7 +178,7 @@ module Vebra
       if code.to_i != 0 && code.to_i != 3
         puts "********************************* property status code:" + code.to_s 
         puts
-        puts node_hash
+        puts $node_hash
         puts
         puts
         puts
