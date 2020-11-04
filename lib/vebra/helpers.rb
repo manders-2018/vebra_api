@@ -12,9 +12,8 @@ module Vebra
         else
           branch.get_properties
         end
-        puts properties[:property_id]
-        puts
-        properties.each { |p| p.get_property unless p.attributes[:action] == 'deleted' }
+        
+        properties.each { |p| [p.get_property unless p.attributes[:action] == 'deleted', puts p.get_property] }
         return properties
       end
 
