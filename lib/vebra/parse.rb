@@ -6,7 +6,6 @@ module Vebra
     # tailored specifically for Vebra output
 
     def parse(nokogiri_xml)
-      puts "************GETS HERE***********"
       customise(parse_node(nokogiri_xml))
     end
 
@@ -172,7 +171,7 @@ module Vebra
 
     # Map the web_status code
     def property_status_lookup(code)
-      print "********************************* property status code:" + code
+      print "********************************* property status code:" + code.to_s
       case code.to_i
       when 0 then ["For Sale", "To Let"]
       when 1 then ["Under Offer", "Let"]
