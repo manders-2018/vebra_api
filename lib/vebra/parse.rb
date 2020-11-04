@@ -171,7 +171,8 @@ module Vebra
 
     # Map the web_status code
     def property_status_lookup(code)
-      print "********************************* property status code:" + code.to_s
+      puts "********************************* property status code:" + code.to_s 
+      puts
       case code.to_i
       when 0 then ["For Sale", "To Let"]
       when 1 then ["Under Offer", "Let"]
@@ -323,6 +324,9 @@ module Vebra
           :postcode => hash.delete(:postcode),
         }
       end
+
+      puts hash[:town]
+      puts
 
       # was: { :attributes => { :database => 1 }, :web_status => ['For Sale', 'To Let'] }
       # now: { :attributes => { :database => 1 }, :web_status => 'For Sale', :grouping => :sales }
