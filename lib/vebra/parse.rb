@@ -329,8 +329,6 @@ module Vebra
         }
       end
 
-      puts hash[:town]
-      puts
 
       # was: { :attributes => { :database => 1 }, :web_status => ['For Sale', 'To Let'] }
       # now: { :attributes => { :database => 1 }, :web_status => 'For Sale', :grouping => :sales }
