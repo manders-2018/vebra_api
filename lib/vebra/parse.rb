@@ -47,7 +47,7 @@ module Vebra
             $node_hash = node_hash
           end
 
-          puts node_hash[:propertyid]
+          puts node.attributes
           puts 
           puts
 
