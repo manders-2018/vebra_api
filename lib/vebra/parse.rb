@@ -178,7 +178,7 @@ module Vebra
       if code.to_i != 0 && code.to_i != 3
         puts "********************************* property status code:" + code.to_s 
         puts
-        puts $node_hash
+        puts $node_hash[:attributes]
         puts
         puts
         puts

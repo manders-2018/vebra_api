@@ -1,6 +1,6 @@
 module Vebra
   module API
-    BASE_URI = "http://webservices.vebra.com/export/{data_feed_id}/v7"
+    BASE_URI = "http://webservices.vebra.com/export/{data_feed_id}/v8"
 
     class << self
       def branches_url
