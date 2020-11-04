@@ -278,19 +278,19 @@ module Vebra
       if hash[:bullets]
         puts hash[:bullets].any?.to_s
         if hash[:bullets].any?
-          begin
-            puts hash[:bullets].inspect
-          rescue => exception
-            puts "1. didnt work"
-          end
+          # begin
+          #   puts hash[:bullets].inspect
+          # rescue => exception
+          #   puts "1. didnt work"
+          # end
 
-          begin
-            puts hash.inspect
-          rescue => exception
-            put "2. didnt work"
-          end
+          # begin
+          #   puts hash.inspect
+          # rescue => exception
+          #   put "2. didnt work"
+          # end
 
-          ###hash[:bullets].map! { |b| b[:value] }
+          hash[:bullets].map! { |b| b.to_s }
           ##hash[:bullets].each { |b| puts b[:value].to_s }
         end
       end
