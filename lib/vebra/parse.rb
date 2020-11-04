@@ -275,9 +275,16 @@ module Vebra
 
       # was: { :bullets => [ { :value => #<value> }, { :value => #<value> } ] }
       # now: { :bullets => [ #<value>, #<value> ] }
-      if hash[:bullets]
-        puts hash[:bullets].any?.to_s
+      if hash[:bullets].is_a?(::Hash)
         if hash[:bullets].any?
+          if hash[:bullets].any?
+            hash[:bullets].map! { |b| b.to_s }
+          end
+        end
+      elsif hash[:bullets].is_a?(::String)
+        puts hash[:bullets].to_s
+        hash[:bullets].to_s
+      end
           # begin
           #   puts hash[:bullets].inspect
           # rescue => exception
@@ -290,10 +297,9 @@ module Vebra
           #   put "2. didnt work"
           # end
 
-          hash[:bullets].map! { |b| b.to_s }
+          
           ##hash[:bullets].each { |b| puts b[:value].to_s }
-        end
-      end
+        
 
       # was: { :paragraphs => [ #<paragraph - type a, #<paragraph - type b> ] }
       # now: { :type_a => [ #<paragraph> ], :type_b => [ #<paragraph> ] }
