@@ -278,7 +278,7 @@ module Vebra
       if hash[:bullets]
         puts hash[:bullets].any?.to_s
         if hash[:bullets].any?
-          #hash[:bullets].map! { |b| b[:value] }
+          ###hash[:bullets].map! { |b| b[:value] }
           hash[:bullets].each { |b| puts b[:value].to_s }
         end
       end
