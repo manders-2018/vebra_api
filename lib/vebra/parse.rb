@@ -355,7 +355,8 @@ module Vebra
       # now: { :garden/parking => false }
       [:parking, :garden].each do |key|
         if hash.keys.include?(key)
-          hash[key] = !hash[key].nil? && hash[key].to_i != 0
+          Rails.logger.debug "#{hash.inspect}"
+          #hash[key] = !hash[key].nil? && hash[key].to_i != 0
         end
       end
 
