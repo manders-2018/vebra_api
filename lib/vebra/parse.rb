@@ -47,6 +47,11 @@ module Vebra
             $node_hash = node_hash
           end
 
+          puts node_hash
+          puts 
+          puts
+
+
           # if the attributes hash is still empty, remove it
           node_hash.delete(:attributes) if node_hash[:attributes].empty?
         end
@@ -282,23 +287,11 @@ module Vebra
           end
         end
       elsif hash[:bullets].is_a?(::String)
-        puts hash[:bullets].to_s
         hash[:bullets].to_s
       end
-          # begin
-          #   puts hash[:bullets].inspect
-          # rescue => exception
-          #   puts "1. didnt work"
-          # end
 
-          # begin
-          #   puts hash.inspect
-          # rescue => exception
-          #   put "2. didnt work"
-          # end
-
-          
-          ##hash[:bullets].each { |b| puts b[:value].to_s }
+      #old code - doesnt work with new data structure returned from API
+      ##hash[:bullets].each { |b| puts b[:value].to_s }
         
 
       # was: { :paragraphs => [ #<paragraph - type a, #<paragraph - type b> ] }
@@ -358,6 +351,8 @@ module Vebra
           :postcode => hash.delete(:postcode),
         }
       end
+
+      
 
 
       # was: { :attributes => { :database => 1 }, :web_status => ['For Sale', 'To Let'] }
