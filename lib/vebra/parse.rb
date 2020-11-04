@@ -6,6 +6,7 @@ module Vebra
     # tailored specifically for Vebra output
 
     def parse(nokogiri_xml)
+      puts "************GETS HERE***********"
       customise(parse_node(nokogiri_xml))
     end
 

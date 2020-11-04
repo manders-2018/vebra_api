@@ -9,6 +9,7 @@ module Vebra
       @xml        = nokogiri_xml.to_xml
       @client     = client
       @attributes = Vebra.parse(nokogiri_xml)
+      puts @xml
     end
 
     # Retrieve the full set of attributes for this branch
