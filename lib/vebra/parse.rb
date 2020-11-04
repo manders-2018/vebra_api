@@ -276,7 +276,8 @@ module Vebra
       # was: { :bullets => [ { :value => #<value> }, { :value => #<value> } ] }
       # now: { :bullets => [ #<value>, #<value> ] }
       if hash[:bullets]
-        hash[:bullets].map! { |b| b[:value].to_s }
+
+        hash[:bullets].map! { |b|  puts b[:value] b[:value].to_s }
       end
 
       # was: { :paragraphs => [ #<paragraph - type a, #<paragraph - type b> ] }
