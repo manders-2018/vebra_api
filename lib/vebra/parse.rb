@@ -171,6 +171,7 @@ module Vebra
 
     # Map the web_status code
     def property_status_lookup(code)
+      print "********************************* property status code:" + code
       case code.to_i
       when 0 then ["For Sale", "To Let"]
       when 1 then ["Under Offer", "Let"]
