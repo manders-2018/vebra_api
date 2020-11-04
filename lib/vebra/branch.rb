@@ -17,6 +17,7 @@ module Vebra
       @xml              = nokogiri_xml_full.to_xml
       nokogiri_xml      = nokogiri_xml_full.css('branch')
       @attributes.merge!(Vebra.parse(nokogiri_xml))
+      puts nokogiri_xml_full
       
     end
 
@@ -25,7 +26,6 @@ module Vebra
     def get_properties
       xml = client.call("#{attributes[:url]}/property").parsed_response
       xml.css('properties property').map { |p| Vebra::Property.new(p, self) }
-      puts @attributes
     end
 
     # As above, but uses the API method to get only properties updated since a given date/time
