@@ -276,6 +276,7 @@ module Vebra
       # was: { :bullets => [ { :value => #<value> }, { :value => #<value> } ] }
       # now: { :bullets => [ #<value>, #<value> ] }
       if hash[:bullets]
+        puts hash[:bullets].any?.to_s
         if !hash[:bullets].empty?
           hash[:bullets].map! { |b| b[:value] }
         end
