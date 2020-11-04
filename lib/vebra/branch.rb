@@ -17,8 +17,6 @@ module Vebra
       @xml              = nokogiri_xml_full.to_xml
       nokogiri_xml      = nokogiri_xml_full.css('branch')
       @attributes.merge!(Vebra.parse(nokogiri_xml))
-      puts nokogiri_xml_full
-      
     end
 
     # Call the API method to retrieve a collection of properties for this branch,
