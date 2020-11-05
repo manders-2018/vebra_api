@@ -179,16 +179,6 @@ module Vebra
 
     # Map the web_status code
     def property_status_lookup(code)
-
-      if code.to_i != 0 && code.to_i != 3
-        puts "********************************* property status code:" + code.to_s 
-        puts
-        #puts $node_hash
-        puts
-        puts
-        puts
-      end
-
       case code.to_i
       when 0 then ["For Sale", "To Let"]
       when 1 then ["Under Offer", "Let"]
