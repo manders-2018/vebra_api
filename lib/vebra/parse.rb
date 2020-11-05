@@ -9,8 +9,6 @@ module Vebra
       customise(parse_node(nokogiri_xml))
     end
 
-
-
     private
 
     # Nokogiri XML object => Ruby hash
