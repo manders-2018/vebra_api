@@ -360,7 +360,7 @@ module Vebra
       [:parking, :garden].each do |key|
         if hash.keys.include?(key)
           #TODO
-          #hash[key] = !hash[key].nil? && hash[key].to_i != 0
+          hash[key] = !hash[key].nil? && hash[key].to_i != 0
         end
       end
 
